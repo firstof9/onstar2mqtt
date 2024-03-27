@@ -297,9 +297,11 @@ class MQTT {
         // TODO: this sucks, find a better way to map these diagnostics and their elements for discovery.
         switch (diagEl.name) {
             case 'LIFETIME ENERGY USED':
+                return this.mapSensorConfigPayload(diag, diagEl, 'total', 'energy');
             case 'LIFETIME EFFICIENCY':
+                return this.mapSensorConfigPayload(diag, diagEl, 'total', 'energy');
             case 'ELECTRIC ECONOMY':
-                return this.mapSensorConfigPayload(diag, diagEl, 'measurement', 'energy');
+                return this.mapSensorConfigPayload(diag, diagEl, 'total', 'energy');
             case 'INTERM VOLT BATT VOLT':
             case 'EV PLUG VOLTAGE':
                 return this.mapSensorConfigPayload(diag, diagEl, 'measurement', 'voltage');
@@ -364,6 +366,7 @@ class MQTT {
             case 'LAST TRIP ELECTRIC ECON':
             case 'LIFETIME MPGE':
             case 'CHARGER POWER LEVEL':
+                return this.mapSensorConfigPayload(diag, diagEl, undefined, undefined);
             default:
                 return this.mapSensorConfigPayload(diag, diagEl, 'measurement');
         }
